@@ -1,6 +1,103 @@
-# Homebrew notes
+# Homebrew Development Notes
 
-My personal notes for using/building different libraries used in homebrew development 
+My personal notes for using/building different libraries used in homebrew development.
+
+## Tools/SDKs
+
+## devkitPro (3DS, Wii, Gamecube, Wii U, Switch, GBA and a few more)
+
+devkitPro comes with a lot of examples and libraries with the installation.
+
+#### SDK Download:
+https://github.com/devkitPro/installer/releases
+
+---
+
+### 3DS
+
+#### Libraries:
+citro2d - https://github.com/devkitPro/citro2d\
+citro3d - https://github.com/devkitPro/citro3d\
+SDL2 - https://github.com/libsdl-org/SDL\
+- Building SDL2:
+https://github.com/libsdl-org/SDL/blob/main/docs/README-n3ds.md
+
+#### Emulator:
+https://citra-emulator.com
+
+---
+
+### Wii & Gamecube
+Almost same architecture so a lot of the libraries are compatible with both.
+
+#### Libraries:
+SDL2 - https://github.com/devkitPro/SDL/tree/ogc-sdl-2.28
+GRRLIB (2D/3D) - https://github.com/GRRLIB/GRRLIB
+
+#### Emulator:
+https://dolphin-emu.org/
+
+---
+
+### Wii U
+#### Libraries:
+WUT - https://github.com/devkitPro/wut/releases\
+SDL2 - https://github.com/devkitPro/SDL/tree/wiiu-sdl2-2.28
+RomFS - https://github.com/yawut/libromfs-wiiu\
+
+#### Emulator:
+https://cemu.info/
+
+Resources:\
+https://www.copetti.org/writings/consoles/wiiu/
+
+---
+
+### Switch
+OpenGL 4 and OpenGL ES are supported, see devkitPro examples.
+
+#### Libraries:
+SDL2 - https://github.com/libsdl-org/SDL\
+
+#### Emulator:
+https://ryujinx.org/\
+https://sudachi-emu.com/home/ (Yuzu fork)
+
+---
+
+## PSP
+
+SDL2 is supported and many samples are available with the SDK.
+
+#### SDK:
+Follow the steps in https://pspdev.github.io/\
+For Windows, WSL2 is recommended and there is a prebuilt SDK.\
+https://learn.microsoft.com/en-us/windows/wsl/install
+
+#### Windows (alternative):
+This is is an older compiler/SDK and only comes with SDL1 out of the box.
+https://darksectordds.github.io/html/MinimalistPSPSDK/index.html
+
+#### Emulator:
+https://www.ppsspp.org/
+
+---
+
+## PS Vita
+
+SDL2 is supported and many samples are available with the SDK.
+
+#### SDK:
+https://vitasdk.org/
+
+#### Emulator:
+https://vita3k.org/
+
+---
+
+# Build info
+
+Misc notes for myself.
 
 ## GRRLib 4.5.1 (Wii/GC)
 
@@ -41,6 +138,7 @@ make PLATFORM=cube clean all install
 # Wii
 make clean all install
 ```
+---
 
 ## SDL 2.28 (Wii/GC)
 
