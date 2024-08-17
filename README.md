@@ -42,13 +42,13 @@ https://dolphin-emu.org/
 ### Wii U
 #### Libraries:
 WUT - https://github.com/devkitPro/wut/releases<br>
-SDL2 - https://github.com/devkitPro/SDL/tree/wiiu-sdl2-2.28<br>
+SDL2 - https://github.com/devkitPro/SDL/tree/wiiu-sdl2-2.28
 RomFS - https://github.com/yawut/libromfs-wiiu<br>
 
 #### Emulator:
 https://cemu.info/
 
-Resources:\
+Resources:<br>
 https://www.copetti.org/writings/consoles/wiiu/
 
 ---
@@ -57,10 +57,10 @@ https://www.copetti.org/writings/consoles/wiiu/
 OpenGL 4 and OpenGL ES are supported, see devkitPro examples.
 
 #### Libraries:
-SDL2 - https://github.com/libsdl-org/SDL\
+SDL2 - https://github.com/libsdl-org/SDL<br>
 
 #### Emulator:
-https://ryujinx.org/\
+https://ryujinx.org/<br>
 https://sudachi-emu.com/home/ (Yuzu fork)
 
 ---
@@ -70,8 +70,8 @@ https://sudachi-emu.com/home/ (Yuzu fork)
 SDL2 is supported and many samples are available with the SDK.
 
 #### SDK:
-Follow the steps in https://pspdev.github.io/\
-For Windows, WSL2 is recommended and there is a prebuilt SDK.\
+Follow the steps in https://pspdev.github.io/<br>
+For Windows, WSL2 is recommended and there is a prebuilt SDK.<br>
 https://learn.microsoft.com/en-us/windows/wsl/install
 
 #### Windows (alternative):
@@ -101,7 +101,7 @@ Misc notes for myself.
 
 ## GRRLib 4.5.1 (Wii/GC)
 
-Download:\
+Download:<br>
 https://github.com/GRRLIB/GRRLIB
 
 PNG support with libpngu is included in the source.
@@ -109,7 +109,7 @@ Optionally, remove TTF and JPEG support by edting these files:
 - GRRLIB__lib.h - `#ifdef` the TTF functions
 - GRRLIB_ttf.c - `#ifdef` the file
 - GRRLIB_core.c - `#ifdef` the calls to `GRRLIB_ExitTTF and GRRLIB_InitTTF`
-- GRRLIB_texEdit.c - `#ifdef GRRLIB_LoadTextureJPG and GRRLIB_LoadTextureJPGEx`\
+- GRRLIB_texEdit.c - `#ifdef GRRLIB_LoadTextureJPG and GRRLIB_LoadTextureJPGEx`<br>
 and the relevant calls in `GRRLIB_LoadTexture`
 
 Edit makefile to support different builds for GC/Wii.
@@ -142,7 +142,7 @@ make clean all install
 
 ## SDL 2.28 (Wii/GC)
 
-Download:\
+Download:<br>
 https://github.com/devkitPro/SDL/tree/ogc-sdl-2.28
 
 If needed, edit cmakelists.txt to remove opengl, build errors happened for me:
