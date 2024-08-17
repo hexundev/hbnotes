@@ -16,9 +16,9 @@ https://github.com/devkitPro/installer/releases
 ### 3DS
 
 #### Libraries:
-citro2d - https://github.com/devkitPro/citro2d\
-citro3d - https://github.com/devkitPro/citro3d\
-SDL2 - https://github.com/libsdl-org/SDL\
+citro2d - https://github.com/devkitPro/citro2d<br>
+citro3d - https://github.com/devkitPro/citro3d<br>
+SDL2 - https://github.com/libsdl-org/SDL<br>
 - Building SDL2:
 https://github.com/libsdl-org/SDL/blob/main/docs/README-n3ds.md
 
@@ -41,9 +41,9 @@ https://dolphin-emu.org/
 
 ### Wii U
 #### Libraries:
-WUT - https://github.com/devkitPro/wut/releases\
-SDL2 - https://github.com/devkitPro/SDL/tree/wiiu-sdl2-2.28
-RomFS - https://github.com/yawut/libromfs-wiiu\
+WUT - https://github.com/devkitPro/wut/releases<br>
+SDL2 - https://github.com/devkitPro/SDL/tree/wiiu-sdl2-2.28<br>
+RomFS - https://github.com/yawut/libromfs-wiiu<br>
 
 #### Emulator:
 https://cemu.info/
