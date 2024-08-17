@@ -31,8 +31,8 @@ https://citra-emulator.com
 Almost same architecture so a lot of the libraries are compatible with both.
 
 #### Libraries:
-SDL2 - https://github.com/devkitPro/SDL/tree/ogc-sdl-2.28
-GRRLIB (2D/3D) - https://github.com/GRRLIB/GRRLIB
+SDL2 - https://github.com/devkitPro/SDL/tree/ogc-sdl-2.28<br>
+GRRLIB (2D/3D) - https://github.com/GRRLIB/GRRLIB<br>
 
 #### Emulator:
 https://dolphin-emu.org/
@@ -42,7 +42,7 @@ https://dolphin-emu.org/
 ### Wii U
 #### Libraries:
 WUT - https://github.com/devkitPro/wut/releases<br>
-SDL2 - https://github.com/devkitPro/SDL/tree/wiiu-sdl2-2.28
+SDL2 - https://github.com/devkitPro/SDL/tree/wiiu-sdl2-2.28<br>
 RomFS - https://github.com/yawut/libromfs-wiiu<br>
 
 #### Emulator:
