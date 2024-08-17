@@ -151,6 +151,12 @@ set_option(SDL_OPENGL              "Include OpenGL support" OFF)
 set_option(SDL_OPENGLES            "Include OpenGL ES support" OFF)
 ```
 
+Keyboard error when compiling:
+```
+src/video/ogc/SDL_ogckeyboard.c:
+KEYBOARD_GetEvent() might not be implemented, edit the function to disable the event
+```
+
 From SDL folder:
 ```bash
 cmake -S. -Bbuild -DCMAKE_TOOLCHAIN_FILE="$DEVKITPRO/cmake/Wii.cmake" -DCMAKE_BUILD_TYPE=Release
