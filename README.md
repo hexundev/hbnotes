@@ -7,12 +7,15 @@ My personal notes for using/building different libraries used in homebrew develo
 Download:\
 https://github.com/GRRLIB/GRRLIB
 
-Optionally, remove TTF and JPEG support:
-- GRRLIB_ttf.c
-- GRRLIB_texEdit.c
-- GRRLIB_core.c 
+PNG support with libpngu is included in the source.
+Optionally, remove TTF and JPEG support by edting these files:
+- GRRLIB__lib.h - `#ifdef` the TTF functions
+- GRRLIB_ttf.c - `#ifdef` the file
+- GRRLIB_core.c - `#ifdef` the calls to `GRRLIB_ExitTTF and GRRLIB_InitTTF`
+- GRRLIB_texEdit.c - `#ifdef GRRLIB_LoadTextureJPG and GRRLIB_LoadTextureJPGEx`\
+and the relevant calls in `GRRLIB_LoadTexture`
 
-Edit makefile to support different build folders for GC/Wii.
+Edit makefile to support different builds for GC/Wii.
 
 ```Makefile
 ifeq ($(PLATFORM),cube)
@@ -44,13 +47,13 @@ make clean all install
 Download:\
 https://github.com/devkitPro/SDL/tree/ogc-sdl-2.28
 
-If needed, edit cmakelists.txt to remove opengl, build error happened for me:
+If needed, edit cmakelists.txt to remove opengl, build errors happened for me:
 ```bash
 set_option(SDL_OPENGL              "Include OpenGL support" OFF)
 set_option(SDL_OPENGLES            "Include OpenGL ES support" OFF)
 ```
 
-From root dir:
+From SDL folder:
 ```bash
 cmake -S. -Bbuild -DCMAKE_TOOLCHAIN_FILE="$DEVKITPRO/cmake/Wii.cmake" -DCMAKE_BUILD_TYPE=Release
 cmake --build build
