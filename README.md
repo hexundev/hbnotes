@@ -39,7 +39,7 @@ https://dolphin-emu.org/
 
 #### Resources:<br>
 https://www.copetti.org/writings/consoles/gamecube/<br>
-https://www.copetti.org/writings/consoles/wiiu/<br>
+https://www.copetti.org/writings/consoles/wii/<br>
 
 ---
 
@@ -173,7 +173,9 @@ cmake --build build
 cmake --install build
 ```
 
-# SDL2 Add env option to use ANGLE
+# SDL2 (GLES2)
+
+## Add ANGLE override
 ```c
 // SDL_windowsopengl.c:
 
@@ -189,5 +191,19 @@ if (SDL_getenv("SDL_FORCE_ANGLE") == NULL)
 else
 {
     SDL_Log("SDL_FORCE_ANGLE set, attempting to load libGLESv2.dll");
+}
+```
+
+## Disable SRGB framebuffer
+Probably a simpler way to do this with `SDL_GL_SetAttribute(SDL_GL_FRAMEBUFFER_SRGB_CAPABLE, 0)`
+```c
+// SDL_render_gles2.c
+const char* srgbEnv = SDL_getenv("SDL_GLES2_DISABLE_SRGB");
+if (srgbEnv != NULL)
+{
+    if ((*srgbEnv) == '1')
+    {
+        data->glDisable(0x8DB9);
+    }
 }
 ```
