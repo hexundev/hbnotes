@@ -37,6 +37,10 @@ GRRLIB (2D/3D) - https://github.com/GRRLIB/GRRLIB<br>
 #### Emulator:
 https://dolphin-emu.org/
 
+#### Resources:<br>
+https://www.copetti.org/writings/consoles/gamecube/<br>
+https://www.copetti.org/writings/consoles/wiiu/<br>
+
 ---
 
 ### Wii U
@@ -48,7 +52,7 @@ RomFS - https://github.com/yawut/libromfs-wiiu<br>
 #### Emulator:
 https://cemu.info/
 
-Resources:<br>
+#### Resources:<br>
 https://www.copetti.org/writings/consoles/wiiu/
 
 ---
@@ -112,6 +116,11 @@ Optionally, remove TTF and JPEG support by edting these files:
 - GRRLIB_texEdit.c - `#ifdef GRRLIB_LoadTextureJPG and GRRLIB_LoadTextureJPGEx`<br>
 and the relevant calls in `GRRLIB_LoadTexture`
 
+Optionally increase or modify default GX FIFO size:
+```
+GRRLIB_core.c - DEFAULT_FIFO_SIZE (256 * 1024)
+```
+
 Edit makefile to support different builds for GC/Wii.
 
 ```Makefile
@@ -162,4 +171,23 @@ From SDL folder:
 cmake -S. -Bbuild -DCMAKE_TOOLCHAIN_FILE="$DEVKITPRO/cmake/Wii.cmake" -DCMAKE_BUILD_TYPE=Release
 cmake --build build
 cmake --install build
+```
+
+# SDL2 Add env option to use ANGLE
+```c
+// SDL_windowsopengl.c:
+
+ /* Check for WGL_EXT_create_context_es2_profile */
+if (SDL_getenv("SDL_FORCE_ANGLE") == NULL)
+{
+    if (HasExtension("WGL_EXT_create_context_es2_profile", extensions)) {
+        SDL_GL_DeduceMaxSupportedESProfile(
+            &_this->gl_data->es_profile_max_supported_version.major,
+            &_this->gl_data->es_profile_max_supported_version.minor);
+    }
+}
+else
+{
+    SDL_Log("SDL_FORCE_ANGLE set, attempting to load libGLESv2.dll");
+}
 ```
