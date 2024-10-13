@@ -49,6 +49,13 @@ WUT - https://github.com/devkitPro/wut/releases<br>
 SDL2 - https://github.com/devkitPro/SDL/tree/wiiu-sdl2-2.28<br>
 RomFS - https://github.com/yawut/libromfs-wiiu<br>
 
+### Shaders
+
+The Wii U uses shaders but the tools to compile them for homebrew are very limited.
+There is an experimental .rpl library to compile GLSL shaders for Wii U.
+
+[CafeGLSL - Shader Compiler for Wii U](https://github.com/Exzap/CafeGLSL)
+
 #### Emulator:
 https://cemu.info/
 
@@ -73,13 +80,14 @@ https://sudachi-emu.com/home/ (Yuzu fork)
 
 SDL2 is supported and many samples are available with the SDK.
 
-#### SDK:
+#### Recommended SDK :
 Follow the steps in https://pspdev.github.io/<br>
 For Windows, WSL2 is recommended and there is a prebuilt SDK.<br>
 https://learn.microsoft.com/en-us/windows/wsl/install
 
 #### Windows (alternative):
-This is is an older compiler/SDK and only comes with SDL1 out of the box.
+This is is an older compiler/SDK and only comes with SDL1 out of the box.<br>
+I have never managed to compile SDL2 with this toolchain.<br>
 https://darksectordds.github.io/html/MinimalistPSPSDK/index.html
 
 #### Emulator:
@@ -108,17 +116,18 @@ Misc notes for myself.
 Download:<br>
 https://github.com/GRRLIB/GRRLIB
 
-PNG support with libpngu is included in the source.
+PNG support with libpngu is included in the source.<br>
 Optionally, remove TTF and JPEG support by edting these files:
-- GRRLIB__lib.h - `#ifdef` the TTF functions
-- GRRLIB_ttf.c - `#ifdef` the file
-- GRRLIB_core.c - `#ifdef` the calls to `GRRLIB_ExitTTF and GRRLIB_InitTTF`
+- GRRLIB__lib.h - `#ifdef` the TTF functions<br>
+- GRRLIB_ttf.c - `#ifdef` the file<br>
+- GRRLIB_core.c - `#ifdef` the calls to `GRRLIB_ExitTTF and GRRLIB_InitTTF`<br>
 - GRRLIB_texEdit.c - `#ifdef GRRLIB_LoadTextureJPG and GRRLIB_LoadTextureJPGEx`<br>
-and the relevant calls in `GRRLIB_LoadTexture`
+and the relevant calls in `GRRLIB_LoadTexture`<br>
 
 Optionally increase or modify default GX FIFO size:
 ```
-GRRLIB_core.c - DEFAULT_FIFO_SIZE (256 * 1024)
+GRRLIB_core.c:
+DEFAULT_FIFO_SIZE (256 * 1024)
 ```
 
 Edit makefile to support different builds for GC/Wii.
@@ -135,7 +144,7 @@ endif
 
 Edit makefile to remove freetype
 ```Makefile
-CFLAGS	= -g -O2 -Wall $(MACHDEP) $(INCLUDE) `$(PREFIX)pkg-config freetype2 --cflags`
+CFLAGS = -g -O2 -Wall $(MACHDEP) $(INCLUDE) `$(PREFIX)pkg-config freetype2 --cflags`
 # to
 CFLAGS = -g -O2 -Wall $(MACHDEP) $(INCLUDE)
 ```
@@ -155,7 +164,7 @@ Download:<br>
 https://github.com/devkitPro/SDL/tree/ogc-sdl-2.28
 
 If needed, edit cmakelists.txt to remove opengl, build errors happened for me:
-```bash
+```cmake
 set_option(SDL_OPENGL              "Include OpenGL support" OFF)
 set_option(SDL_OPENGLES            "Include OpenGL ES support" OFF)
 ```
@@ -173,11 +182,11 @@ cmake --build build
 cmake --install build
 ```
 
-# SDL2 (GLES2)
+# SDL2 (GL ES2)
 
 ## Add ANGLE override
 ```c
-// SDL_windowsopengl.c:
+// SDL_windowsopengl.c - WIN_GL_InitExtensions:
 
  /* Check for WGL_EXT_create_context_es2_profile */
 if (SDL_getenv("SDL_FORCE_ANGLE") == NULL)
@@ -195,9 +204,9 @@ else
 ```
 
 ## Disable SRGB framebuffer
-Probably a simpler way to do this with `SDL_GL_SetAttribute(SDL_GL_FRAMEBUFFER_SRGB_CAPABLE, 0)`
+There's probably a simpler way to do this with `SDL_GL_SetAttribute(SDL_GL_FRAMEBUFFER_SRGB_CAPABLE, 0)`
 ```c
-// SDL_render_gles2.c
+// SDL_render_gles2.c - GLES2_CreateRenderer
 const char* srgbEnv = SDL_getenv("SDL_GLES2_DISABLE_SRGB");
 if (srgbEnv != NULL)
 {
